@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		p {
+			color: grey;
+		}
+	</style>
+</head>
+
+<script>
+
+function calcHhEmission(e) {
+
+	const HHSIZE = parseInt(document.getElementById("NumPeople").value)
+	const WEEKSPERYEAR = 52
+	const POUNDSCO2PERGALLON = 19.6
+	const MONTHSPERYEAR = 12 
+	const RECYCLINGWASTE = 692
+
+	var numMiles = parseInt(document.getElementById("NumMiles").value) * WEEKSPERYEAR / 21.6 *  POUNDSCO2PERGALLON
+	var natGas = parseInt(document.getElementById("NatGas").value) * MONTHSSPERYEAR / 1.04 * 11.7 / HHSIZE
+	var electricity = parseInt(document.getElementById("NatGas").value) * MONTHSSPERYEAR / 118.8 * 1238.52 / HHSIZE
+	var fuelOil = parseInt(document.getElementById("NatGas").value) * MONTHSSPERYEAR * 22.61 / 4.02 / HHSIZE
+
+	var recycle = RECYCLINGWASTE - parseInt(document.getElementById("Paper").value) - parseInt(document.getElementById("Plastic").value) - parseInt(document.getElementById("Glass").value) - parseInt(document.getElementById("Aluminum").value)
+
+
+	var total = numMiles + natGas + electricity + fuelOil + recycle
+	alert(total)
+}
+
+</script>
+
+
+<body background = "earthBG.jpg">
+
+<h1> <font color = "darkgrey"> Find Your Carbon Footprint </font> </h1>
+
+</body>
+
+
+<p> Number Of People In Your Household: <input type = "text" id = "NumPeople" value=""> </p> 
+<p> Number Of Miles Driven Per Week: <input type = "text" id = "NumMiles" value = ""> </p> 
+<p> How Much Do You Pay For Natural Gas Every Month? <input type = "text" id = "NatGas" value = ""> </p> 
+<p> How Much Do You Pay For Electricity Every Month? <input type = "text" id = "Electricity" value = ""> </p> 
+<p> How Much Do You Pay For Fuel Oil Every Month? <input type = "text" id = "FuelOil" value = ""> </p> 
+<p> Do You Recycle Paper? <input type = "text" id = "Paper" value = ""> </p> 
+<p> Do You Recycle Plastic? <input type = "text" id = "Plastic" value = ""> </p> 
+<p> Do You Recycle Glass? <input type = "text" id = "Glass" value = "" > </p> 
+<p> Do You Recycle Aluminum?  
+  </p> 
+
+
+<button onclick="calcHhEmission()"> Calculate </button>
+
+</html>
